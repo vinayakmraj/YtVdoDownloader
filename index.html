@@ -10,10 +10,20 @@
         <input type="text" id="video_url" name="video_url" required>
         <button type="submit">Download</button>
     </form>
+    
+    {% if video_info %}
+    <h2>Video Details:</h2>
+    <img src="{{ video_info['thumbnails']['high']['url'] }}" alt="Video Thumbnail">
+    <p>Title: {{ video_info['title'] }}</p>
+    {% endif %}
+    
     {% if video_path %}
     <h2>Video Download:</h2>
     <a href="{{ video_path }}" download>Download Video</a>
+    <br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_info['resourceId']['videoId'] }}" frameborder="0" allowfullscreen></iframe>
     {% endif %}
+    
     {% if mp3_path %}
     <h2>Audio Download:</h2>
     <a href="{{ mp3_path }}" download>Download Audio (MP3)</a>
