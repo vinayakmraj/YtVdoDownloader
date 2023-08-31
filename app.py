@@ -21,15 +21,15 @@ def index():
         video_stream = yt.streams.get_highest_resolution()
         download_path = get_default_download_path()
         video_path = video_stream.download(output_path=download_path)
-        
+
         # Convert video to MP3
         video_clip = VideoFileClip(video_path)
         mp3_path = os.path.splitext(video_path)[0] + ".mp3"
         video_clip.audio.write_audiofile(mp3_path)
-        
-        status = "Video downloaded and converted to MP3 successfully!"
-        return render_template("index.html", status=status)
-    return render_template("index.html", status="")
+
+        return render_template("index.html", video_path=video_path, mp3_path=mp3_path)
+    
+    return render_template("index.html", video_path="", mp3_path="")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -8,11 +8,15 @@
     <form method="POST">
         <label for="video_url">Enter YouTube URL:</label>
         <input type="text" id="video_url" name="video_url" required>
-        <button type="submit">Download Video</button>
+        <button type="submit">Download</button>
     </form>
-    {% if status %}
-    <p>{{ status }}</p>
-    <a href="{{ mp3_path }}" download>Download MP3</a>
+    {% if video_path %}
+    <h2>Video Download:</h2>
+    <a href="{{ video_path }}" download>Download Video</a>
+    {% endif %}
+    {% if mp3_path %}
+    <h2>Audio Download:</h2>
+    <a href="{{ mp3_path }}" download>Download Audio (MP3)</a>
     {% endif %}
 </body>
 </html>
